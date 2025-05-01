@@ -1,6 +1,6 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-const cocktailCodes = ["margarita", "mojito", "a1", "kir"];
+const cocktailCodes = ['margarita', 'mojito', 'a1', 'kir'];
 
 export const AppRoutes = () => (
   <Routes>
