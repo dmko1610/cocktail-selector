@@ -18,7 +18,7 @@ export default function CocktailPage() {
   if (!drinks) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className='drinks'>
       {drinks.map((drink) => (
         <DrinkCard drink={drink} />
       ))}

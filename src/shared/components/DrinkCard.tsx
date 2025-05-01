@@ -10,12 +10,11 @@ export default function DrinkCard({ drink }: { drink: Drink }) {
   }
 
   return (
-    <div>
-      <div>
+    <div className="drink">
+      <div className="info">
         <h2>{drink.strDrink}</h2>
-        <p>
-          {drink.strCategory} / {drink.strAlcoholic}
-        </p>
+        <p>{drink.strCategory}</p>
+        <p>{drink.strAlcoholic}</p>
         <p>
           <strong>Glass:</strong> {drink.strGlass}
         </p>
@@ -33,7 +32,7 @@ export default function DrinkCard({ drink }: { drink: Drink }) {
           ))}
         </ul>
       </div>
-      <div>
+      <div className="thumbnail">
         <img src={drink.strDrinkThumb} alt={drink.strDrink} loading="lazy" />
       </div>
     </div>

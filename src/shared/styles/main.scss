@@ -5,6 +5,7 @@ body {
 }
 
 .app {
+  display: flex;
   max-width: 1024px;
   min-width: 360px;
   margin: 0 auto;
@@ -38,13 +39,50 @@ body {
   font-weight: bold;
 }
 
+.content {
+  flex: 1;
+  padding: 1rem;
+}
+
+.drink {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-bottom: 1px dotted #000;
+}
+
+.drink:last-child {
+  border-bottom: none;
+}
+
+.info {
+  flex: 1 1 60%;
+}
+
+.thumbnail {
+  flex: 1 1 200px;
+  max-width: 300px;
+  margin-top: 16px;
+  margin-bottom: 32px;
+}
+
+.thumbnail img {
+  width: 100%;
+  border: 1px solid #000;
+}
+
 @media (max-width: 600px) {
   .app {
     flex-direction: column;
   }
+
   .sidebar {
-    width: '100%';
+    width: 100%;
     border-right: none;
     border-bottom: 1px solid #ddd;
+  }
+
+  .drink {
+    flex-direction: column;
   }
 }
