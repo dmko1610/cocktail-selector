@@ -26,8 +26,8 @@ describe('DrinkCard', () => {
     expect(
       screen.getByRole('heading', { name: /mojito/i })
     ).toBeInTheDocument();
-    expect(screen.getByText(/Cocktail/)).toBeInTheDocument()
-      expect(screen.getByText(/Alcoholic/)).toBeInTheDocument();
+    expect(screen.getByText(/Cocktail/)).toBeInTheDocument();
+    expect(screen.getByText(/Alcoholic/)).toBeInTheDocument();
     expect(screen.getByText(/Glass:/)).toBeInTheDocument();
     expect(screen.getByText(/Highball glass/)).toBeInTheDocument();
     expect(screen.getByText(/Instructions:/)).toBeInTheDocument();
