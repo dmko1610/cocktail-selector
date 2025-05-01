@@ -1,14 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Sidebar from './Sidebar';
-
-const codes = ['margarita', 'mojito', 'a1', 'kir'];
+import { VALID_CODES } from '../../constants';
 
 describe('Sidebar', () => {
   it('displays all cocktail codes as navigation links', () => {
     render(
       <MemoryRouter>
-        <Sidebar codes={codes} />
+        <Sidebar codes={VALID_CODES} />
       </MemoryRouter>
     );
 
@@ -20,11 +19,11 @@ describe('Sidebar', () => {
   it('links point to correct paths', () => {
     render(
       <MemoryRouter>
-        <Sidebar codes={codes} />
+        <Sidebar codes={VALID_CODES} />
       </MemoryRouter>
     );
 
-    codes.forEach((code) => {
+    VALID_CODES.forEach((code) => {
       const link = screen.getByText(code[0].toUpperCase() + code.slice(1));
       expect(link.getAttribute('href')).toBe(`/${code}`);
     });

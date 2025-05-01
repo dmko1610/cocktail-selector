@@ -1,5 +1,5 @@
 export const mockDrink = {
-  drinkId: '12345',
+  idDrink: '12345',
   strDrink: 'Mojito',
   strCategory: 'Cocktail',
   strAlcoholic: 'Alcoholic',

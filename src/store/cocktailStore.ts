@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 export interface Drink {
-  drinkId: string;
+  idDrink: string;
   strDrink: string;
   strCategory: string;
   strAlcoholic: string;
@@ -13,24 +13,26 @@ export interface Drink {
 
 interface CocktailStore {
   data: Record<string, Drink[]>;
+  error: string | null;
   fetchCocktails: (code: string) => Promise<void>;
 }
 
 export const useCocktailStore = create<CocktailStore>((set) => ({
   data: {},
+  error: null,
   fetchCocktails: async (code) => {
     try {
       const res = await fetch(
         `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${code}`
       );
       const json = await res.json();
-      if (!json.drinks) throw new Error('No drinks found');
 
       set((state) => ({
         data: { ...state.data, [code]: json.drinks },
+        error: null,
       }));
     } catch (e) {
-      console.error('Error occured: ', e);
+      set({ error: (e as Error).message });
     }
   },
 }));

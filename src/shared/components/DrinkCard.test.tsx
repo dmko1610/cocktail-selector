@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import DrinkCard from './DrinkCard';
 
 const mockDrink = {
-  drinkId: '12345',
+  idDrink: '12345',
   strDrink: 'Mojito',
   strCategory: 'Cocktail',
   strAlcoholic: 'Alcoholic',
@@ -26,7 +26,8 @@ describe('DrinkCard', () => {
     expect(
       screen.getByRole('heading', { name: /mojito/i })
     ).toBeInTheDocument();
-    expect(screen.getByText(/Cocktail \/ Alcoholic/)).toBeInTheDocument();
+    expect(screen.getByText(/Cocktail/)).toBeInTheDocument()
+      expect(screen.getByText(/Alcoholic/)).toBeInTheDocument();
     expect(screen.getByText(/Glass:/)).toBeInTheDocument();
     expect(screen.getByText(/Highball glass/)).toBeInTheDocument();
     expect(screen.getByText(/Instructions:/)).toBeInTheDocument();
