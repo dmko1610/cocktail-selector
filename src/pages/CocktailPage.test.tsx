@@ -20,14 +20,19 @@ vi.mock('react-router-dom', async () => {
 vi.mock('../store/cocktailStore', () => ({ useCocktailStore: vi.fn() }));
 
 vi.mock('../shared/components/DrinkCard', () => ({
-  default: ({ drink }: Drink) => <div>Mocked Drink Card {drink.strDrink}</div>,
+  default: ({ drink }: { drink: Drink }) => (
+    <div>Mocked Drink Card {drink.strDrink}</div>
+  ),
 }));
 
 describe('CocktailPage', () => {
   it('fetches data if data is not persist in store', () => {
-    (useParams as any).mockReturnValue({ code: 'mojito' });
+    (useParams as jest.Mock).mockReturnValue({ code: 'mojito' });
     const fetchCocktails = vi.fn();
-    (useCocktailStore as any).mockReturnValue({ data: {}, fetchCocktails });
+    (useCocktailStore as unknown as jest.Mock).mockReturnValue({
+      data: {},
+      fetchCocktails,
+    });
     render(<CocktailPage />);
 
     expect(fetchCocktails).toHaveBeenCalledWith('mojito');
@@ -35,9 +40,9 @@ describe('CocktailPage', () => {
   });
 
   it('displays drink cards when data is available', () => {
-    (useParams as any).mockReturnValue({ code: 'mojito' });
+    (useParams as jest.Mock).mockReturnValue({ code: 'mojito' });
     const fetchCocktails = vi.fn();
-    (useCocktailStore as any).mockReturnValue({
+    (useCocktailStore as unknown as jest.Mock).mockReturnValue({
       data: {
         mojito: [mockDrink],
       },
@@ -51,9 +56,9 @@ describe('CocktailPage', () => {
 
   describe('when the list is empty', () => {
     it("displays 'No drinks found' message", () => {
-      (useParams as any).mockReturnValue({ code: 'mojito' });
+      (useParams as jest.Mock).mockReturnValue({ code: 'mojito' });
       const fetchCocktails = vi.fn();
-      (useCocktailStore as any).mockReturnValue({
+      (useCocktailStore as unknown as jest.Mock).mockReturnValue({
         data: { mojito: [] },
         fetchCocktails,
       });
@@ -65,9 +70,9 @@ describe('CocktailPage', () => {
 
   describe('when error in store occured', () => {
     it('displays error message', () => {
-      (useParams as any).mockReturnValue({ code: 'mojito' });
+      (useParams as jest.Mock).mockReturnValue({ code: 'mojito' });
       const fetchCocktails = vi.fn();
-      (useCocktailStore as any).mockReturnValue({
+      (useCocktailStore as unknown as jest.Mock).mockReturnValue({
         data: {},
         error: 'API error',
         fetchCocktails,
@@ -80,9 +85,9 @@ describe('CocktailPage', () => {
 
   describe('when code invalid', () => {
     it('redirects to not found page', () => {
-      (useParams as any).mockReturnValue({ code: 'invalid' });
+      (useParams as jest.Mock).mockReturnValue({ code: 'invalid' });
       const fetchCocktails = vi.fn();
-      (useCocktailStore as any).mockReturnValue({
+      (useCocktailStore as unknown as jest.Mock).mockReturnValue({
         data: {},
         fetchCocktails,
       });

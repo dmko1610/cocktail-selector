@@ -8,7 +8,7 @@ export interface Drink {
   strGlass: string;
   strInstructions: string;
   strDrinkThumb: string;
-  [key: string]: any;
+  [key: string]: string;
 }
 
 interface CocktailStore {
