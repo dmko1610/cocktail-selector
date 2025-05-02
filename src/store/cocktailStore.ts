@@ -26,6 +26,9 @@ export const useCocktailStore = create<CocktailStore>((set) => ({
         `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${code}`
       );
       const json = await res.json();
+      if (!res.ok) {
+        throw new Error(`API error: ${res.status}`);
+      }
 
       set((state) => ({
         data: { ...state.data, [code]: json.drinks },
