@@ -14,32 +14,17 @@ export interface Drink {
 interface CocktailStore {
   data: Record<string, Drink[]>;
   error: string | null;
-  fetchCocktails: (code: string) => Promise<void>;
+  setData: (code: string, drinks: Drink[]) => void;
+  setError: (error: string | null) => void;
 }
 
 export const useCocktailStore = create<CocktailStore>((set) => ({
   data: {},
   error: null,
-  fetchCocktails: async (code) => {
-    try {
-      const res = await fetch(
-        `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${code}`
-      );
-      const json = await res.json();
-      if (!res.ok) {
-        throw new Error(`API error: ${res.status}`);
-      }
-
-      set((state) => ({
-        data: { ...state.data, [code]: json.drinks },
-        error: null,
-      }));
-    } catch (e) {
-      const errorMessage =
-        (e as Error).message === 'Failed to fetch'
-          ? 'Server is unavailable. VPN may be required or there may be no internet connection'
-          : (e as Error).message;
-      set({ error: errorMessage });
-    }
-  },
+  setData: (code, drinks) =>
+    set((state) => ({
+      data: { ...state.data, [code]: drinks },
+      error: null,
+    })),
+  setError: (error) => set({ error }),
 }));

@@ -1,14 +1,14 @@
 import { Navigate, useParams } from 'react-router-dom';
-import { useCocktailStore } from '@/store/cocktailStore';
 import { useEffect, useMemo } from 'react';
 import DrinkCard from '@/shared/components/DrinkCard';
 import { VALID_CODES } from '@/constants';
 import throttle from 'lodash.throttle';
 import ErrorMessage from '@/shared/components/ErrorMessage';
+import { useFetchCocktails } from '@/hooks/useFetchCocktails';
 
 export default function CocktailPage() {
   const { code } = useParams();
-  const { data, error, fetchCocktails } = useCocktailStore();
+  const { data, error, fetchCocktails } = useFetchCocktails();
 
   if (!code || !VALID_CODES.includes(code)) {
     return <Navigate to="/404" replace />;
