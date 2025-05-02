@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
-import ErrorMessage from './ErrorMessage';
+import ErrorMessage from '@/shared/components/ErrorMessage';
 
 function renderErrorMessage({
   props = { error: 'Network error', onRetry: vi.fn() },
