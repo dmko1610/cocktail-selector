@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { vi } from 'vitest';
-import { Drink, useCocktailStore } from '../store/cocktailStore';
+import { Drink, useCocktailStore } from '@/store/cocktailStore';
 import { render, screen } from '@testing-library/react';
 import CocktailPage from './CocktailPage';
-import { mockDrink } from '../mocks/mockDrink';
-import { renderWithRouter } from '../test-utils';
+import { mockDrink } from '@/mocks/mockDrink';
+import { renderWithRouter } from '@/test-utils';
 
 vi.mock('react-router-dom', async () => {
   const actual =

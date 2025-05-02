@@ -1,4 +1,4 @@
-import { Drink } from '../../store/cocktailStore';
+import { Drink } from '@/store/cocktailStore';
 
 export default function DrinkCard({ drink }: { drink: Drink }) {
   const ingredients = [];

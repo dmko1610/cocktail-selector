@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import { VALID_CODES } from '../../constants';
+import { VALID_CODES } from '@/constants';
 
 describe('Sidebar', () => {
   it('displays all cocktail codes as navigation links', () => {

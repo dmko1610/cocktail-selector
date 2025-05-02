@@ -1,8 +1,8 @@
 import { Navigate, useParams } from 'react-router-dom';
-import { useCocktailStore } from '../store/cocktailStore';
+import { useCocktailStore } from '@/store/cocktailStore';
 import { useEffect } from 'react';
-import DrinkCard from '../shared/components/DrinkCard';
-import { VALID_CODES } from '../constants';
+import DrinkCard from '@/shared/components/DrinkCard';
+import { VALID_CODES } from '@/constants';
 
 export default function CocktailPage() {
   const { code } = useParams();
