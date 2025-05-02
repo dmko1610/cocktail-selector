@@ -1,7 +1,7 @@
-@import './DrinkCard.scss';
-@import './ErrorMessage.scss';
-@import './NotFound.scss';
-@import './Sidebar.scss';
+@use './DrinkCard' as *;
+@use './ErrorMessage' as *;
+@use './NotFound' as *;
+@use './Sidebar' as *;
 
 body {
   margin: 0;
