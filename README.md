@@ -2,10 +2,10 @@
 
 ## CI Status
 
-| Type        | Status                                                                 |
-|-------------|------------------------------------------------------------------------|
-| Unit Tests  | ![Unit Tests](https://github.com/dmko1610/cocktail-selector/actions/workflows/ci.yml/badge.svg) |
-| E2E Tests   | ![E2E Tests](https://github.com/dmko1610/cocktail-selector/actions/workflows/e2e.yml/badge.svg)   |
+| Type       | Status                                                                                          |
+| ---------- | ----------------------------------------------------------------------------------------------- |
+| Unit Tests | ![Unit Tests](https://github.com/dmko1610/cocktail-selector/actions/workflows/ci.yml/badge.svg) |
+| E2E Tests  | ![E2E Tests](https://github.com/dmko1610/cocktail-selector/actions/workflows/e2e.yml/badge.svg) |
 
 A simple React application that fetches cocktail recipes from TheCocktailDB API, displays them, and allows users to browse different types of cocktails.  
 The app should look like this -> <img src="https://github.com/user-attachments/assets/0bf17b10-baa6-4d81-bb37-d63fef7af67c" width=350/>
