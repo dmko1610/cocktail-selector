@@ -4,6 +4,7 @@ import { useEffect, useMemo } from 'react';
 import DrinkCard from '@/shared/components/DrinkCard';
 import { VALID_CODES } from '@/constants';
 import throttle from 'lodash.throttle';
+import ErrorMessage from '@/shared/components/ErrorMessage';
 
 export default function CocktailPage() {
   const { code } = useParams();
@@ -24,15 +25,7 @@ export default function CocktailPage() {
   };
   const throttleRefetch = useMemo(() => throttle(refetch, 3000), [refetch]);
 
-  if (error)
-    return (
-      <div className="error">
-        <p className="error__message">{error}</p>
-        <button className="error__button" onClick={throttleRefetch}>
-          Retry the request
-        </button>
-      </div>
-    );
+  if (error) return <ErrorMessage error={error} onRetry={throttleRefetch} />;
 
   const drinks = data[code || ''];
 

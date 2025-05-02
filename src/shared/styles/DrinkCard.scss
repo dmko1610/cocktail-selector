@@ -1,0 +1,32 @@
+.drink {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-bottom: 1px dotted #000;
+}
+
+.drink:last-child {
+  border-bottom: none;
+}
+
+.info {
+  flex: 1 1 60%;
+}
+
+.thumbnail {
+  flex: 1 1 200px;
+  max-width: 300px;
+  margin-top: 16px;
+  margin-bottom: 32px;
+}
+
+.thumbnail img {
+  width: 100%;
+  border: 1px solid #000;
+}
+
+@media (max-width: 600px) {
+  .drink {
+    flex-direction: column;
+  }
+}

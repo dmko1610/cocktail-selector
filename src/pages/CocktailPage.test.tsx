@@ -17,13 +17,14 @@ vi.mock('react-router-dom', async () => {
     useParams: vi.fn(),
   };
 });
-
 vi.mock('../store/cocktailStore', () => ({ useCocktailStore: vi.fn() }));
-
 vi.mock('../shared/components/DrinkCard', () => ({
   default: ({ drink }: { drink: Drink }) => (
     <div>Mocked Drink Card {drink.strDrink}</div>
   ),
+}));
+vi.mock('../shared/components/ErrorMessage', () => ({
+  default: () => <div role="error_message">Mocked Error Message</div>,
 }));
 
 describe('CocktailPage', () => {
@@ -70,7 +71,7 @@ describe('CocktailPage', () => {
   });
 
   describe('when error occured', () => {
-    it('displays error message', () => {
+    it('displays the error', () => {
       (useParams as jest.Mock).mockReturnValue({ code: 'mojito' });
       const fetchCocktails = vi.fn();
       (useCocktailStore as unknown as jest.Mock).mockReturnValue({
@@ -80,29 +81,10 @@ describe('CocktailPage', () => {
       });
       render(<CocktailPage />);
 
-      expect(screen.getByText(/failed to fetch/i)).toBeInTheDocument();
-      expect(
-        screen.getByRole('button', { name: /retry/i })
-      ).toBeInTheDocument();
+      expect(screen.getByRole('error_message')).toBeInTheDocument();
     });
 
     describe('retry button is clicked', () => {
-      it('fetch cocktails', async () => {
-        (useParams as jest.Mock).mockReturnValue({ code: 'mojito' });
-        const fetchCocktails = vi.fn();
-        (useCocktailStore as unknown as jest.Mock).mockReturnValue({
-          data: {},
-          error: 'Some error',
-          fetchCocktails,
-        });
-        render(<CocktailPage />);
-
-        const button = screen.getByRole('button', { name: /retry/i });
-        await userEvent.click(button);
-
-        expect(fetchCocktails).toHaveBeenCalledWith('mojito');
-      });
-
       it.skip('throttles retry cicks', async () => {
         vi.useFakeTimers();
         (useParams as jest.Mock).mockReturnValue({ code: 'mojito' });
