@@ -1,8 +1,9 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { useCocktailStore } from '@/store/cocktailStore';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import DrinkCard from '@/shared/components/DrinkCard';
 import { VALID_CODES } from '@/constants';
+import throttle from 'lodash.throttle';
 
 export default function CocktailPage() {
   const { code } = useParams();
@@ -18,7 +19,20 @@ export default function CocktailPage() {
     }
   }, [code]);
 
-  if (error) return <div>Error: {error}</div>;
+  const refetch = () => {
+    fetchCocktails(code);
+  };
+  const throttleRefetch = useMemo(() => throttle(refetch, 3000), [refetch]);
+
+  if (error)
+    return (
+      <div className="error">
+        <p className="error__message">{error}</p>
+        <button className="error__button" onClick={throttleRefetch}>
+          Retry the request
+        </button>
+      </div>
+    );
 
   const drinks = data[code || ''];
 

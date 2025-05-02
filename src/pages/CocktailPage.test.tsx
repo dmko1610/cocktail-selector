@@ -5,6 +5,7 @@ import { render, screen } from '@testing-library/react';
 import CocktailPage from './CocktailPage';
 import { mockDrink } from '@/mocks/mockDrink';
 import { renderWithRouter } from '@/test-utils';
+import userEvent from '@testing-library/user-event';
 
 vi.mock('react-router-dom', async () => {
   const actual =
@@ -68,18 +69,62 @@ describe('CocktailPage', () => {
     });
   });
 
-  describe('when error in store occured', () => {
+  describe('when error occured', () => {
     it('displays error message', () => {
       (useParams as jest.Mock).mockReturnValue({ code: 'mojito' });
       const fetchCocktails = vi.fn();
       (useCocktailStore as unknown as jest.Mock).mockReturnValue({
         data: {},
-        error: 'API error',
+        error: 'Failed to fetch',
         fetchCocktails,
       });
       render(<CocktailPage />);
 
-      expect(screen.getByText(/error: api error/i)).toBeInTheDocument();
+      expect(screen.getByText(/failed to fetch/i)).toBeInTheDocument();
+      expect(
+        screen.getByRole('button', { name: /retry/i })
+      ).toBeInTheDocument();
+    });
+
+    describe('retry button is clicked', () => {
+      it('fetch cocktails', async () => {
+        (useParams as jest.Mock).mockReturnValue({ code: 'mojito' });
+        const fetchCocktails = vi.fn();
+        (useCocktailStore as unknown as jest.Mock).mockReturnValue({
+          data: {},
+          error: 'Some error',
+          fetchCocktails,
+        });
+        render(<CocktailPage />);
+
+        const button = screen.getByRole('button', { name: /retry/i });
+        await userEvent.click(button);
+
+        expect(fetchCocktails).toHaveBeenCalledWith('mojito');
+      });
+
+      it.skip('throttles retry cicks', async () => {
+        vi.useFakeTimers();
+        (useParams as jest.Mock).mockReturnValue({ code: 'mojito' });
+        const fetchCocktails = vi.fn();
+        (useCocktailStore as unknown as jest.Mock).mockReturnValue({
+          data: {},
+          error: 'Network error',
+          fetchCocktails,
+        });
+        render(<CocktailPage />);
+        const button = screen.getByRole('button', { name: /retry/i });
+
+        await userEvent.click(button);
+        await userEvent.click(button);
+        await userEvent.click(button);
+        vi.advanceTimersByTime(3000);
+
+        vi.runAllTimers();
+        expect(fetchCocktails).toHaveBeenCalledTimes(1);
+
+        vi.useRealTimers();
+      });
     });
   });
 

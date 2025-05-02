@@ -32,7 +32,11 @@ export const useCocktailStore = create<CocktailStore>((set) => ({
         error: null,
       }));
     } catch (e) {
-      set({ error: (e as Error).message });
+      const errorMessage =
+        (e as Error).message === 'Failed to fetch'
+          ? 'Server is unavailable. VPN may be required or there may be no internet connection'
+          : (e as Error).message;
+      set({ error: errorMessage });
     }
   },
 }));
