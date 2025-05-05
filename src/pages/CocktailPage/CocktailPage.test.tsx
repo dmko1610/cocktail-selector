@@ -2,12 +2,13 @@ import { useParams } from 'react-router-dom';
 import { vi } from 'vitest';
 
 import { render, screen } from '@testing-library/react';
-import CocktailPage from '@/pages/CocktailPage/CocktailPage';
 import { mockDrink } from '@/mocks/mockDrink';
 import { renderWithRouter } from '@/test-utils';
 import userEvent from '@testing-library/user-event';
 import { useFetchCocktails } from '@/shared/hooks/useFetchCocktails';
 import { Drink } from '@/entities/drink/types';
+
+import CocktailPage from './CocktailPage';
 
 vi.mock('react-router-dom', async () => {
   const actual =
@@ -22,12 +23,12 @@ vi.mock('react-router-dom', async () => {
 vi.mock('@/shared/hooks/useFetchCocktails', () => ({
   useFetchCocktails: vi.fn(),
 }));
-vi.mock('@/entities/drink/ui/DrinkCard/DrinkCard', () => ({
+vi.mock('@/entities/drink/ui/DrinkCard', () => ({
   default: ({ drink }: { drink: Drink }) => (
     <div>Mocked Drink Card {drink.strDrink}</div>
   ),
 }));
-vi.mock('@/shared/ui/ErrorMessage/ErrorMessage', () => ({
+vi.mock('@/shared/ui/ErrorMessage', () => ({
   default: () => <div role="error_message">Mocked Error Message</div>,
 }));
 

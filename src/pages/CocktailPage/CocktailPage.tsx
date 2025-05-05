@@ -1,10 +1,11 @@
 import { Navigate, useParams } from 'react-router-dom';
-import { useEffect, useMemo } from 'react';
-import DrinkCard from '@/entities/drink/ui/DrinkCard/DrinkCard';
-import { VALID_CODES } from '@/constants';
 import throttle from 'lodash.throttle';
+import { useEffect, useMemo } from 'react';
+
+import DrinkCard from '@/entities/drink/ui/DrinkCard';
+import { VALID_CODES } from '@/constants';
 import { useFetchCocktails } from '@/shared/hooks/useFetchCocktails';
-import ErrorMessage from '@/shared/ui/ErrorMessage/ErrorMessage';
+import ErrorMessage from '@/shared/ui/ErrorMessage';
 
 export default function CocktailPage() {
   const { code } = useParams();

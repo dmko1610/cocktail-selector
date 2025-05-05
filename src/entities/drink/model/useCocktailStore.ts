@@ -1,5 +1,6 @@
-import { Drink } from '@/entities/drink/types';
 import { create } from 'zustand';
+
+import { Drink } from '@/entities/drink/types';
 
 interface CocktailStore {
   data: Record<string, Drink[]>;
