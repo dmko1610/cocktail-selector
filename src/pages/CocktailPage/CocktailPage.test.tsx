@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import CocktailPage from '@/pages/CocktailPage';
+import CocktailPage from '@/pages/CocktailPage/CocktailPage';
 import { mockDrink } from '@/mocks/mockDrink';
 import { renderWithRouter } from '@/test-utils';
 import userEvent from '@testing-library/user-event';
-import { useFetchCocktails } from '@/hooks/useFetchCocktails';
-import { Drink } from '@/store/cocktailStore';
+import { useFetchCocktails } from '@/shared/hooks/useFetchCocktails';
+import { Drink } from '@/entities/drink/types';
 
 vi.mock('react-router-dom', async () => {
   const actual =

@@ -1,5 +1,5 @@
 import { fetchCocktailsFromAPI } from '@/services/api';
-import { useCocktailStore } from '@/store/cocktailStore';
+import { useCocktailStore } from '@/entities/drink/model/useCocktailStore';
 
 export const useFetchCocktails = () => {
   const { setData, setError, data, error } = useCocktailStore();

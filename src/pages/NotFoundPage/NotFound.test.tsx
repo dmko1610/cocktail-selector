@@ -1,4 +1,4 @@
-import NotFound from '@/pages/NotFound';
+import NotFound from '@/pages/NotFoundPage/NotFound';
 import { render, screen } from '@testing-library/react';
 
 describe('NotFound', () => {

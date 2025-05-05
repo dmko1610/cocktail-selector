@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import DrinkCard from '@/shared/components/DrinkCard';
+import DrinkCard from './DrinkCard';
 
 const mockDrink = {
   idDrink: '12345',
