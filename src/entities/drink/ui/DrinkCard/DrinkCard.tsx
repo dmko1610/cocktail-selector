@@ -1,4 +1,4 @@
-import { Drink } from "@/entities/drink/types";
+import { Drink } from '@/entities/drink/types';
 import styles from './DrinkCard.module.scss';
 
 export default function DrinkCard({ drink }: { drink: Drink }) {
