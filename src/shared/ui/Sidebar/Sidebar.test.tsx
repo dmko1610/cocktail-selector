@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import Sidebar from '@/shared/components/Sidebar';
+import Sidebar from '@/shared/ui/Sidebar/Sidebar';
 import { VALID_CODES } from '@/constants';
 
 describe('Sidebar', () => {

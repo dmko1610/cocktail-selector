@@ -1,4 +1,5 @@
-import { Drink } from '@/store/cocktailStore';
+import { Drink } from "@/entities/drink/types";
+import styles from './DrinkCard.module.scss';
 
 export default function DrinkCard({ drink }: { drink: Drink }) {
   const ingredients = [];
@@ -10,8 +11,8 @@ export default function DrinkCard({ drink }: { drink: Drink }) {
   }
 
   return (
-    <div className="drink">
-      <div className="info">
+    <div className={styles.drink}>
+      <div className={styles.info}>
         <h2>{drink.strDrink}</h2>
         <p>{drink.strCategory}</p>
         <p>{drink.strAlcoholic}</p>
@@ -32,7 +33,7 @@ export default function DrinkCard({ drink }: { drink: Drink }) {
           ))}
         </ul>
       </div>
-      <div className="thumbnail">
+      <div className={styles.thumbnail}>
         <img src={drink.strDrinkThumb} alt={drink.strDrink} loading="lazy" />
       </div>
     </div>

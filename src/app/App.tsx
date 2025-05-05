@@ -1,5 +1,5 @@
 import { VALID_CODES } from '@/constants';
-import Sidebar from '@/shared/components/Sidebar';
+import Sidebar from '@/shared/ui/Sidebar/Sidebar';
 import { AppRoutes } from './router';
 
 export default function App() {

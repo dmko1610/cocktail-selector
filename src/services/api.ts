@@ -1,4 +1,4 @@
-import { Drink } from '@/store/cocktailStore';
+import { Drink } from "@/entities/drink/types";
 
 export async function fetchCocktailsFromAPI(code: string): Promise<Drink[]> {
   const res = await fetch(
