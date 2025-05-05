@@ -19,7 +19,7 @@ describe('Cocktail Selector App', () => {
   });
 
   it('must display correct active item on sidebar', () => {
-    cy.contains('Margarita').click();
-    cy.contains('Margarita').should('have.class', 'active');
+    cy.contains('A1').click();
+    cy.contains('A1').should('have.attr', 'aria-current', 'page');
   });
 });
