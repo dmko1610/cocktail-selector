@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { vi } from 'vitest';
+
 import { render, screen } from '@testing-library/react';
 import CocktailPage from '@/pages/CocktailPage/CocktailPage';
 import { mockDrink } from '@/mocks/mockDrink';
@@ -18,15 +19,15 @@ vi.mock('react-router-dom', async () => {
     useParams: vi.fn(),
   };
 });
-vi.mock('../../hooks/useFetchCocktails', () => ({
+vi.mock('@/shared/hooks/useFetchCocktails', () => ({
   useFetchCocktails: vi.fn(),
 }));
-vi.mock('../../shared/components/DrinkCard', () => ({
+vi.mock('@/entities/drink/ui/DrinkCard/DrinkCard', () => ({
   default: ({ drink }: { drink: Drink }) => (
     <div>Mocked Drink Card {drink.strDrink}</div>
   ),
 }));
-vi.mock('../../shared/components/ErrorMessage', () => ({
+vi.mock('@/shared/ui/ErrorMessage/ErrorMessage', () => ({
   default: () => <div role="error_message">Mocked Error Message</div>,
 }));
 
