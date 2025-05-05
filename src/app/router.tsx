@@ -1,7 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import NotFound from '@/pages/NotFoundPage/NotFound';
-import CocktailPage from '@/pages/CocktailPage/CocktailPage';
+
 import { VALID_CODES } from '@/constants';
+import CocktailPage from '@/pages/CocktailPage';
+import NotFound from '@/pages/NotFoundPage';
 
 export const AppRoutes = () => (
   <main className="content">
